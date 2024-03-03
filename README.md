@@ -1,8 +1,8 @@
-# refine
+# randiksource
 
-Refine is a lightweight, extensible object query tool for JavaScript.
+randiksource is a lightweight, extensible object query tool for JavaScript.
 
-Refine offers:
+randiksource offers:
 
 * A fluent, easy-to-read API
 * Custom-defined filters
@@ -11,8 +11,8 @@ Refine offers:
 ## Example
 
 ```javascript
-var refine = require('refine');
-var select = refine.select;
+var randiksource = require('randiksource');
+var select = randiksource.select;
 var order = require('./order');
 
 var entities = order.entities.map(function(entity) {
@@ -39,12 +39,12 @@ console.log(customerInfo);
 ## Installation
 
 ```bash
-$ npm install refine
+$ npm install randiksource
 ```
 
 ## Usage
 
-### refine.select(collection)
+### randiksource.select(collection)
 
 ```select``` takes an array as the ```collection``` parameter and returns a ```Query``` object for chaining.
 
@@ -62,16 +62,16 @@ Executes a contains filter using the provided ```val``` string.  Returns an Arra
 
 ## Custom Filters
 
-Custom filters can be assigned using ```refine.Filter.prototype```.
+Custom filters can be assigned using ```randiksource.Filter.prototype```.
 
 Define ```this.action``` inside the filter to generate the filtered array.
 
 Example of a custom filter:
 
 ```javascript
-var refine = require('refine');
+var randiksource = require('randiksource');
 
-refine.Filter.prototype.isInformational = function() {
+randiksource.Filter.prototype.isInformational = function() {
   this.action = function(collection) {
     return collection.filter(function(item) {
       if (item.class && item.class.indexOf('info') > -1) {
@@ -80,14 +80,14 @@ refine.Filter.prototype.isInformational = function() {
     });
   };
 
-  return refine.Query.querify(this.query.run());
+  return randiksource.Query.querify(this.query.run());
 };
 ```
 
 Custom filter in action:
 
 ```javascript
-var select = require('refine').select;
+var select = require('randiksource').select;
 
 var informational = 
   select(order.entities)
